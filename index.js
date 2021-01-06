@@ -5,6 +5,7 @@ const images = {
   treasure: "💰",
   leafs: "🍃"
 };
+
 const sound = new Howl({
   src: [
     "http://res.cloudinary.com/fadhilyudho/video/upload/v1515565927/879601-128_tqagvn.mp3"
