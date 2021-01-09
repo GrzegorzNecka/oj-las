@@ -1,5 +1,5 @@
-import "./style.css";
 import { Howl } from "howler";
+import "./style.css";
 
 const images = {
   treasure: "💰",
@@ -40,7 +40,9 @@ treasure.addEventListener("info", () => setInfo(), {
 entry.addEventListener(
   "mouseenter",
   ({ fromElement: elem }) => {
-    discoveringTree(elem);
+    if (elem != null) {
+      discoveringTree(elem);
+    }
   },
   { capture: true }
 );
