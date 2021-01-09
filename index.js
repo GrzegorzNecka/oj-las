@@ -15,26 +15,32 @@ const sound = new Howl({
 const entry = document.querySelector(".entry");
 const treasure = document.querySelector(".treasure");
 
-treasure.addEventListener(
-  "info",
-  () => {
-    alert("wygrałeś  💪 ");
-    sound.play();
-  },
-  {
-    once: true
+//------------- executing functions
+
+const setInfo = () => {
+  alert("wygrałeś  💪 ");
+  sound.play();
+};
+
+const discoveringTree = elem => {
+  if (elem.className.includes("treasure")) {
+    elem.innerText = images.treasure;
+    treasure.dispatchEvent(new CustomEvent("info", { once: true }));
+  } else if (elem.className.includes("tree")) {
+    elem.innerText = images.leafs;
   }
-);
+};
+
+//------------- events
+
+treasure.addEventListener("info", () => setInfo(), {
+  once: true
+});
 
 entry.addEventListener(
   "mouseenter",
   ({ fromElement: elem }) => {
-    if (elem.className.includes("treasure")) {
-      elem.innerText = images.treasure;
-      treasure.dispatchEvent(new CustomEvent("info", { once: true }));
-    } else if (elem.className.includes("tree")) {
-      elem.innerText = images.leafs;
-    }
+    discoveringTree(elem);
   },
   { capture: true }
 );
