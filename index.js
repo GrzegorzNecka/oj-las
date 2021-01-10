@@ -17,11 +17,6 @@ const treasure = document.querySelector(".treasure");
 
 //------------- executing functions
 
-const setInfo = () => {
-  alert("wygrałeś  💪 ");
-  sound.play();
-};
-
 const discoveringTree = elem => {
   if (elem.className.includes("treasure")) {
     elem.innerText = images.treasure;
@@ -31,11 +26,12 @@ const discoveringTree = elem => {
   }
 };
 
-//------------- events
+const setCongratulations = () => {
+  alert("wygrałeś  💪 ");
+  sound.play();
+};
 
-treasure.addEventListener("info", () => setInfo(), {
-  once: true
-});
+//------------- events
 
 entry.addEventListener(
   "mouseenter",
@@ -46,3 +42,7 @@ entry.addEventListener(
   },
   { capture: true }
 );
+
+treasure.addEventListener("info", () => setCongratulations(), {
+  once: true
+});
