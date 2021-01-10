@@ -51,6 +51,10 @@ entry.addEventListener(
   { capture: true }
 );
 
-treasure.addEventListener("treasureFound", () => setCongratulations(), {
-  once: true
-});
+const treasureFound = treasure.addEventListener(
+  "treasureFound",
+  () => setCongratulations(),
+  {
+    once: true
+  }
+);
