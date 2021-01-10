@@ -15,14 +15,22 @@ const sound = new Howl({
 const entry = document.querySelector(".entry");
 const treasure = document.querySelector(".treasure");
 
+const findTreasure = elem => {
+  elem.innerText = images.treasure;
+  treasure.dispatchEvent(new CustomEvent("treasureFound", { once: true }));
+};
+
+const findLeaf = elem => {
+  elem.innerText = images.leafs;
+};
+
 //------------- executing functions
 
 const discoveringTree = elem => {
   if (elem.className.includes("treasure")) {
-    elem.innerText = images.treasure;
-    treasure.dispatchEvent(new CustomEvent("info", { once: true }));
+    findTreasure(elem);
   } else if (elem.className.includes("tree")) {
-    elem.innerText = images.leafs;
+    findLeaf(elem);
   }
 };
 
@@ -43,6 +51,6 @@ entry.addEventListener(
   { capture: true }
 );
 
-treasure.addEventListener("info", () => setCongratulations(), {
+treasure.addEventListener("treasureFound", () => setCongratulations(), {
   once: true
 });
